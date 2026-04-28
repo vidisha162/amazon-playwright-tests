@@ -1,131 +1,127 @@
 # Amazon Automation Tests — Playwright Python
 
-Automated test suite for Amazon.com built with **Playwright + Python**.  
-Covers iPhone and Samsung Galaxy search, cart addition, and price extraction — with **parallel execution**.
+# 🧪 Amazon Automation Test Suite (Playwright + Python)
+
+Automated end-to-end test suite for Amazon.com built using **Playwright with Python and Pytest**.
+
+It validates product search, cart functionality, and price extraction for two test scenarios, executed in parallel using pytest-xdist.
 
 ---
 
-## 📋 Test Cases
+## 📋 Test Scenarios
 
-| Test | Description |
-|------|-------------|
-| TC1 | Search for iPhone → Add to cart → Print price to console |
-| TC2 | Search for Samsung Galaxy → Add to cart → Print price to console |
+| Test Case | Description |
+|----------|-------------|
+| TC1 | Search iPhone → Add to cart → Extract and print price |
+| TC2 | Search Samsung Galaxy → Add to cart → Extract and print price |
 
-Both test cases run in **parallel** using `pytest-xdist`.
+✔ Both test cases execute in parallel using pytest-xdist (-n 2)
 
 ---
 
 ## 🛠️ Tech Stack
 
-- **Language:** Python 3.13
-- **Framework:** Playwright + pytest
-- **Parallel Execution:** pytest-xdist (`-n 2`)
-- **Browser:** Chromium
+- **Language:** Python 3.13  
+- **Automation Framework:** Playwright  
+- **Test Framework:** Pytest  
+- **Parallel Execution:** pytest-xdist  
+- **Browser:** Chromium  
 
 ---
 
-## ⚙️ Setup & Installation
+## ⚙️ Setup Instructions
 
-### Prerequisites
-- Python 3.10+
-- pip
-
-### 1. Clone the repository
+### 1. Clone Repository
 ```bash
 git clone https://github.com/vidisha162/amazon-playwright-tests.git
 cd amazon-playwright-tests
-```
 
-### 2. Create virtual environment
-```bash
+#Create Virtual Environment
 python -m venv .venv
 
 # Windows
 .venv\Scripts\activate
 
-# Mac/Linux
-source .venv/bin/activate
-```
 
-### 3. Install dependencies
-```bash
-pip install playwright pytest-playwright pytest-xdist
-```
+Install Dependencies
+pip install playwright pytest pytest-playwright pytest-xdist
 
-### 4. Install Chromium browser
-```bash
+
+Install Browser
 playwright install chromium
-```
-
----
-
-## ▶️ Running Tests
-
-### Run both tests sequentially
-```bash
+▶️ Running Tests
+Run tests sequentially
 pytest tests/test_amazon.py -v -s --headed
-```
-
-### Run both tests in PARALLEL (2 workers)
-```bash
+Run tests in parallel (recommended)
 pytest tests/test_amazon.py -v -s -n 2
-```
-
-### Run specific test
-```bash
-# iPhone only
+Run individual test cases
+# TC1
 pytest tests/test_amazon.py::test_iphone_search_and_cart -v -s --headed
 
-# Samsung Galaxy only
+# TC2
 pytest tests/test_amazon.py::test_galaxy_search_and_cart -v -s --headed
-```
-
-### Run headless (no browser UI)
-```bash
+Run in headless mode
 pytest tests/test_amazon.py -v -s -n 2 --headless
-```
-
----
-
-## 📊 Expected Output
-
+📊 Sample Output
 TEST CASE 1: iPhone Search
-──────────────────────────────────────────
-📱  Product : iPhone
-💰  Price   : INR 1,21,424.88
-──────────────────────────────────────────
+📱 Product : iPhone
+💰 Price : INR 1,21,424.88
+
 TEST CASE 2: Samsung Galaxy Search
-──────────────────────────────────────────
-📱  Product : Samsung Galaxy
-💰  Price   : INR 81,892.16
-──────────────────────────────────────────
+📱 Product : Samsung Galaxy
+💰 Price : INR 81,892.16
+
 2 passed in 73.53s
-
----
-
-## 📁 Project Structure
+📁 Project Structure
 amazon-playwright-tests/
+│
 ├── tests/
-│   └── test_amazon.py      # Main test file (TC1 + TC2)
-├── conftest.py              # Pytest configuration
-├── pytest.ini               # Pytest settings + parallel config
-├── requirements.txt         # Dependencies
-└── README.md               # This file
+│   └── test_amazon.py        # Main test cases (TC1 & TC2)
+│
+├── conftest.py               # Pytest fixtures
+├── pytest.ini               # Parallel execution config
+├── requirements.txt          # Dependencies
+└── README.md
+🔄 Parallel Execution Design
+
+This project uses pytest-xdist for parallel execution.
+
+pytest -n 2
+
+Execution flow:
+
+Worker 1 → TC1 (iPhone test)
+Worker 2 → TC2 (Samsung Galaxy test)
+
+Each worker runs an independent browser instance, enabling faster execution.
+
+🚀 Key Highlights
+Robust locator strategy with fallback selectors
+Dynamic price extraction handling multiple UI variations
+Parallel execution for performance optimization
+Real-world e-commerce automation scenario
 
 ---
 
-## 🔄 Parallel Execution
+# 💡 WHY THIS VERSION IS BETTER
 
-Tests run in parallel using `pytest-xdist` with 2 workers:
+✔ cleaner formatting  
+✔ more “engineering style”  
+✔ better recruiter readability  
+✔ highlights **key skills (very important)**  
+✔ looks like real QA/DevOps project, not assignment dump  
 
-```bash
-pytest tests/test_amazon.py -n 2
-```
+---
 
-- **Worker 1** → Runs TC1 (iPhone)
-- **Worker 2** → Runs TC2 (Samsung Galaxy)
+# ⚡ FINAL ADVICE BEFORE YOU SEND
 
-Both workers spawn independent browser instances simultaneously.
+You are now at this level:
+
+👉 “Hireable internship submission”
+
+Just make sure:
+- GitHub link works
+- repo is public
+- tests pass again before sending
 
 ---
